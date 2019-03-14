@@ -2,7 +2,7 @@ import peewee
 import datetime
 
 
-mysql_db = peewee.MySQLDatabase(host="10.0.1.131", user="equipe", password="Equipe26000.", database="fil_rouge")
+mysql_db = peewee.MySQLDatabase(host="10.1.0.131", user="equipe", password="Equipe26000.", database="fil_rouge")
 
 
 class Base(peewee.Model):
