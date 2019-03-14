@@ -1,5 +1,5 @@
-from bottle import run, route , template
-
+from bottle import run, route , template , view
+import models
 
 @route('/')
 def index():
@@ -15,11 +15,13 @@ def lastgameresult():
 
 @route('/Statperday')
 def statperday():
-    return '<h1> Stat per day page <h1> '
+    return '<h1> Stat per day page <h1>'
+
 
 @route('/Statpermatch')
 def statpermatch():
-    return '<h1> Stat per match page <h1>'
+
+    return template('Statpermatch.tpl', results_list=statpermatch.select())
 
 
 if __name__ == '__main__':
