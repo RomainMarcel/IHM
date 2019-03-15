@@ -1,9 +1,10 @@
-from bottle import run, route , template , view
-from models import *
+from bottle import run, route, template
+import models as mo
 
-@route('/')
-def index():
-    return template('index')
+
+# @route('/')
+# def index():
+#     return template('index')
 
 
 @route('/gameserver')
@@ -20,13 +21,13 @@ def lastgameresult():
 @route('/Statperday')
 def statperday():
 
-    return template('Statperday', resultliste=StatsPerDay.select())
+    return template('Statperday', resultliste=mo.StatsPerDay.select())
 
 
 @route('/Statpermatch')
 def statpermatch():
 
-    return template('Statpermatch.tpl', results_list=StatsPerMatch.select())
+    return template('Statpermatch.tpl', results_list=mo.Statpermatch.select())
 
 
 if __name__ == '__main__':
