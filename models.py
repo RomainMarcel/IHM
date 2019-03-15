@@ -54,7 +54,7 @@ class StatsPerMatch(Base):
 
 
 class StatsPerDay(Base):
-    date = peewee.DateField(default=datetime.datetime.now)
+    date = peewee.DateField()
     machine_name = peewee.ForeignKeyField(GameServer, backref='stat_per_day')
     nombre_partie = peewee.IntegerField()
     duree_moy_partie = peewee.IntegerField()
