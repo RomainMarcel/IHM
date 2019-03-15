@@ -35,7 +35,7 @@ def statperday():
 @route('/Statpermatch')
 def statpermatch():
 
-    return template('Statpermatch.tpl', results_list=mo.Statpermatch.select())
+    return template('Statpermatch.tpl', results_list=mo.StatsPerMatch.select())
 
 
 if __name__ == '__main__':
