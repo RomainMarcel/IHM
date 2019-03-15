@@ -2,7 +2,7 @@ import peewee
 import datetime
 
 
-mysql_db = peewee.MySQLDatabase(host="localhost", user="olivier", password="Gauthier2014.", database="fil_rouge")
+mysql_db = peewee.MySQLDatabase(host="10.1.0.131", user="equipe", password="Equipe26000.", database="fil_rouge")
 
 
 class Base(peewee.Model):
@@ -55,7 +55,7 @@ class StatsPerMatch(Base):
 
 
 class StatsPerDay(Base):
-    date = peewee.DateField(default=datetime.datetime.now)
+    date = peewee.DateField()
     machine_name = peewee.ForeignKeyField(GameServer, backref='stat_per_day')
     nombre_partie = peewee.IntegerField()
     duree_moy_partie = peewee.IntegerField()
