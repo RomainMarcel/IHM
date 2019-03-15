@@ -13,15 +13,8 @@ def gameserver():
 
     return template('game_server.tpl', data_list=mo.GameServer().select())
 
-
 @route('/lastgameresult')
 def lastgameresult():
-    last_game = {
-        "machine_name": "A",
-        "start_game": "12/02/2019",
-        "duree": "120",
-        "winner": "Player 1",
-    }
     last_game = mo.StatsPerMatch.select().order_by(mo.StatsPerMatch.start_game.desc())[0]
     return template('lastgameresultpage', game=last_game)
 
