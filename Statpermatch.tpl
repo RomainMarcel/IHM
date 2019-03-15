@@ -4,8 +4,5 @@
     <li>{{item.start_game}}</li>
     <li>{{item.duree}}</li>
     <li>{{item.winner}}</li>
-
     % end
 </ul>
-
-
