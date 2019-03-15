@@ -1,4 +1,5 @@
 from bottle import run, route , template
+import models
 
 
 @route('/')
@@ -7,7 +8,11 @@ def index():
 
 @route('/gameserver')
 def gameserver():
-    return '<h1>Game Server Page </h1>'
+    # data_list = [
+    #     {"adress_ip": "142.3.6.4", "nom_serveur": "A", "game": "puissance4",},
+    #     {"adress_ip": "142.3.6.5", "nom_serveur": "B", "game": "morpion", },
+    # ]
+    return template('game_server.tpl', data_list=models.GameServer().select())
 
 @route('/lastgameresult')
 def lastgameresult():
