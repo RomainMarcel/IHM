@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 from bottle import run, route, template
 import models as mo
 
+=======
+from bottle import run, route , template , view
+import models
+>>>>>>> 21c37e43c20441a726541d6f80ef31b5d2bef442
 
 @route('/')
 def index():
@@ -20,13 +25,18 @@ def lastgameresult():
 
 @route('/Statperday')
 def statperday():
+<<<<<<< HEAD
 
     return template('Statperday', resultliste=mo.StatsPerDay.select())
+=======
+    return '<h1> Stat per day page <h1>'
+>>>>>>> 21c37e43c20441a726541d6f80ef31b5d2bef442
 
 
 @route('/Statpermatch')
 def statpermatch():
-    return '<h1> Stat per match page <h1>'
+
+    return template('Statpermatch.tpl', results_list=statpermatch.select())
 
 
 if __name__ == '__main__':

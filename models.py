@@ -1,7 +1,6 @@
 import peewee
 import datetime
 
-
 mysql_db = peewee.MySQLDatabase(host="10.1.0.131", user="equipe", password="Equipe26000.", database="fil_rouge")
 
 
@@ -21,7 +20,7 @@ class GameServer(Base):
 
     @classmethod
     def list_serveur(cls):
-        """Affiche tous les serveurs connues. Il lui faut les paramétres nom_serveur
+        """Affiche tous les serveurs connues. Il lui faut les parametres nom_serveur
          et elle renvoie une liste avec tous les serveurs connues"""
         return cls.select()
 
@@ -37,7 +36,7 @@ class ReceiverMessage(Base):
 
     @classmethod
     def liste_message(cls, nom):
-        """Affiche la liste des messages par date d'arrivée.
+        """Affiche la liste des messages par date d'arrivee.
         Il lui faut les parametres msg_machine, msg et date_message. Elle renvoie la date, la machine et le message"""
         return cls.select().join(GameServer).order_by(cls.date_message).where(GameServer.nom_serveur == nom)
 
