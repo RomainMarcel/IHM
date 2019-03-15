@@ -15,6 +15,12 @@ class GameServer(Base):
     adress_ip = peewee.CharField(unique=True, max_length=255)
     nom_serveur = peewee.CharField(unique=True, max_length=255)
     game = peewee.CharField(max_length=20)
+    max_player_delay = peewee.IntegerField()
+    max_coin_blink_delay = peewee.IntegerField()
+    victory_blink_delay = peewee.IntegerField()
+    level = peewee.IntegerField()
+    player_1_color = peewee.CharField()
+    player_2_color = peewee.CharField()
 
     def __str__(self):
         return self.nom_serveur

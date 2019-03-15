@@ -16,7 +16,6 @@ class Data:
         self.start_game_format = datetime.datetime.strptime(self.start_game, "%d/%m/%y %H:%M")
         self.end_game_format = datetime.datetime.strptime(self.end_game, "%d/%m/%y %H:%M")
         self.winner = data["Winner"]
-        # self.nbr_partie_jour =
 
     def get_day(self):
 
@@ -43,14 +42,23 @@ for fiche in os.listdir('./partie'):
                                        duree=stats.get_game_duration(),
                                        winner=stats.get_winner())
         try:
-            mo.StatsPerDay.get(mo.StatsPerDay.machine_name == stats.nom_serveur, mo.StatsPerDay.date == stats.start_game_format)
+            obj = mo.StatsPerDay.get(mo.StatsPerDay.machine_name == stats.nom_serveur,
+                                     mo.StatsPerDay.date == stats.start_game_format)
+            obj.nombre_partie += 1
+            obj.duree_moy_partie += stats.get_game_duration()
+            if stats.get_winner() == 'player1':
+                obj.joueur1_win += 1
+            elif stats.get_winner() == 'player2':
+                obj.joueur2_win += 1
+            else:
+                obj.egalite += 1
+            obj.save()
             print("Cette enregistrement existe déja")
 
 
         except peewee.DoesNotExist:
-            # winner_player_1 = 0
-            # winner_player_2 = 0
-            # winner_egalite = 0
+            nombre_partie = 1
+            duree_moy_partie = stats.get_game_duration()
             if mo.StatsPerMatch.winner == 'player1':
                 winner_player_1 = 1
                 winner_player_2 = 0
@@ -66,8 +74,8 @@ for fiche in os.listdir('./partie'):
 
             mo.StatsPerDay.create(date=stats.start_game_format,
                                   machine_name=stats.nom_serveur,
-                                  nombre_partie=7,
-                                  duree_moy_partie=54,
+                                  nombre_partie=nombre_partie,
+                                  duree_moy_partie=duree_moy_partie,
                                   joueur1_win=winner_player_1,
                                   joueur2_win=winner_player_2,
                                   egalite=winner_egalite)
