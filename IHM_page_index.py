@@ -11,7 +11,7 @@ import models as mo
 @route('/gameserver')
 def gameserver():
 
-    return template('game_server.tpl', data_list=models.GameServer().select())
+    return template('game_server.tpl', data_list=mo.GameServer().select())
 
 
 @route('/lastgameresult')
@@ -22,7 +22,7 @@ def lastgameresult():
         "duree": "120",
         "winner": "Player 1",
     }
-    last_game = StatsPerMatch.select().order_by(StatsPerMatch.start_game.desc())[0]
+    last_game = mo.StatsPerMatch.select().order_by(mo.StatsPerMatch.start_game.desc())[0]
     return template('lastgameresultpage', game=last_game)
 
 
